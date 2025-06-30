@@ -216,242 +216,163 @@ class _HeroSection extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Main content column
         Expanded(
-          child: Wrap(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'hey ashish here 👋',
-                      style: GoogleFonts.dmSerifDisplay(
-                        color: Colors.white,
-                        fontSize: 44,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black.withOpacity(0.6),
-                            offset: Offset(2, 3),
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white10,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        'Developer  •  IIT Roorkee',
-                        style: txt.bodyLarge!.copyWith(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      children: [
-                        Icon(Icons.code, color: Colors.blue[200], size: 22),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            'Building full-stack apps with Flutter, Node.js, Express.js & MongoDB.',
-                            style: txt.bodyLarge!.copyWith(
-                              color: Colors.white.withOpacity(0.92),
-                              fontSize: 17,
-                              height: 1.4,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    Wrap(
-                      children: [
-                        FilledButton.icon(
-                          onPressed:
-                              () => _launch(
-                                'https://drive.google.com/file/d/1ol2FZR4hISP7wVO9drXcCqtWyx7obWVh/view?usp=sharing ',
-                              ),
-                          icon: Icon(Icons.description, color: Colors.white),
-                          label: const Text(
-                            'Resume',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Color(0xFF222733),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 28,
-                              vertical: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            elevation: 2,
-                          ),
-                        ),
-                        const SizedBox(width: 18),
-                        _SocialIcon(
-                          icon: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: SvgPicture.asset(
-                              'assets/icons/github.svg',
-                              fit: BoxFit.fill,
-                              color: Colors.white,
-                            ),
-                          ),
-                          url: 'https://github.com/ashishexee',
-                          tooltip: 'Github',
-                        ),
-                        const SizedBox(width: 10),
-                        _SocialIcon(
-                          icon: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: SvgPicture.asset(
-                              'assets/icons/linkedin.svg',
-                              fit: BoxFit.fill,
-                              color: Colors.white,
-                            ),
-                          ),
-                          url:
-                              'https://www.linkedin.com/in/ashish-singh-111212319/',
-                          tooltip: 'Linkedin',
-                        ),
-                        const SizedBox(width: 10),
-                        _SocialIcon(
-                          icon: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: SvgPicture.asset(
-                              'assets/icons/x.svg',
-                              fit: BoxFit.fill,
-                              color: Colors.white,
-                            ),
-                          ),
-                          url: 'https://x.com/ashishexeee',
-                          tooltip: 'X',
-                        ),
-                      ],
+              Text(
+                'hey ashish here 👋',
+                style: GoogleFonts.dmSerifDisplay(
+                  color: Colors.white,
+                  fontSize: 37.5,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black.withOpacity(0.6),
+                      offset: Offset(2, 3),
+                      blurRadius: 8,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 40),
-              Wrap(
+              const SizedBox(height: 14),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white10,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  'Developer  •  IIT Roorkee',
+                  style: txt.bodyLarge!.copyWith(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 18),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(28),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.18),
-                          blurRadius: 18,
-                          offset: Offset(0, 8),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(28),
-                      child: Image.asset(
-                        'assets/dash.png',
-                        fit: BoxFit.cover,
-                        height: 220,
-                        width: 220,
+                  Icon(Icons.code, color: Colors.blue[200], size: 22),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Building full-stack apps with Flutter, Node.js, Express.js & MongoDB.',
+                      style: txt.bodyLarge!.copyWith(
+                        color: Colors.white.withOpacity(0.92),
+                        fontSize: 17,
+                        height: 1.4,
                       ),
                     ),
                   ),
-                  Expanded(child: SizedBox(width: 140)),
-                  Column(
-                    children: [
-                      SizedBox(height: 40),
-                      Container(
-                        height: 170,
-                        width: 190,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                          vertical: 12,
+                ],
+              ),
+              const SizedBox(height: 30),
+              Wrap(
+                children: [
+                  FilledButton.icon(
+                    onPressed:
+                        () => _launch(
+                          'https://drive.google.com/file/d/1ol2FZR4hISP7wVO9drXcCqtWyx7obWVh/view?usp=sharing ',
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.04),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Phone',
-                                style: txt.bodySmall!.copyWith(
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                '+91 7678250729',
-                                style: txt.bodySmall!.copyWith(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                'Email',
-                                style: txt.bodySmall!.copyWith(
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                'ashish@me.iitr.ac.in',
-                                style: txt.bodySmall!.copyWith(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                'GitHub',
-                                style: txt.bodySmall!.copyWith(
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap:
-                                    () => _launch(
-                                      'https://github.com/ashishexee',
-                                    ),
-                                child: Text(
-                                  'github.com/ashishexee',
-                                  style: txt.bodySmall!.copyWith(
-                                    color: Colors.blue[200],
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                    icon: Icon(Icons.description, color: Colors.white),
+                    label: const Text(
+                      'Resume',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Color(0xFF222733),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                        vertical: 16,
                       ),
-                    ],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      elevation: 2,
+                    ),
+                  ),
+                  const SizedBox(width: 18),
+                  _SocialIcon(
+                    icon: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: SvgPicture.asset(
+                        'assets/icons/github.svg',
+                        fit: BoxFit.fill,
+                        color: Colors.white,
+                      ),
+                    ),
+                    url: 'https://github.com/ashishexee',
+                    tooltip: 'Github',
+                  ),
+                  const SizedBox(width: 10),
+                  _SocialIcon(
+                    icon: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: SvgPicture.asset(
+                        'assets/icons/linkedin.svg',
+                        fit: BoxFit.fill,
+                        color: Colors.white,
+                      ),
+                    ),
+                    url: 'https://www.linkedin.com/in/ashish-singh-111212319/',
+                    tooltip: 'Linkedin',
+                  ),
+                  const SizedBox(width: 10),
+                  _SocialIcon(
+                    icon: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: SvgPicture.asset(
+                        'assets/icons/x.svg',
+                        fit: BoxFit.fill,
+                        color: Colors.white,
+                      ),
+                    ),
+                    url: 'https://x.com/ashishexeee',
+                    tooltip: 'X',
                   ),
                 ],
               ),
             ],
           ),
+        ),
+        const SizedBox(width: 40),
+        // Side content column
+        Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 18),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.18),
+                    blurRadius: 18,
+                    offset: Offset(0, 8),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(28),
+                child: Image.asset(
+                  'assets/dash.png',
+                  fit: BoxFit.cover,
+                  height: 220,
+                  width: 220,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

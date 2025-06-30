@@ -7,7 +7,7 @@ var client = http.Client();
 Future<String> getResponse(String message) async {
   Map<String, String> responseHeader = {'Content-Type': 'application/json'};
 
-  var url = Uri.parse("http://192.168.29.229:3000/api/chat");
+  var url = Uri.parse("https://portfolio-flutter-web.onrender.com/api/chat");
   var response = await client.post(
     url,
     headers: responseHeader,

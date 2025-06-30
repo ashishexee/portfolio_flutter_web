@@ -105,7 +105,7 @@ class _ChatBotWindowState extends State<ChatBotWindow> {
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
                   child:
-                      messages.isEmpty == true
+                      messages.isEmpty
                           ? Center(
                             child: Column(
                               children: [
