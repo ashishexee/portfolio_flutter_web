@@ -76,7 +76,7 @@ class _ChatBotWindowState extends State<ChatBotWindow> {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        'Chat with me',
+                        'Chat with AshBot',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

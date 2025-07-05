@@ -58,7 +58,7 @@ class _Home extends StatefulWidget {
 
 class _HomeState extends State<_Home> with SingleTickerProviderStateMixin {
   Offset _cursor = Offset.zero;
-  bool _isChatCollapsed = true;
+  final bool _isChatCollapsed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -135,11 +135,10 @@ class _HomeState extends State<_Home> with SingleTickerProviderStateMixin {
   }
 }
 
-// ignore: non_constant_identifier_names
 Widget _LoveSection() {
   return Center(
     child: Text(
-      'Build with Flutter 💖 and Node.js 🚀',
+      'Build with 💖 in Flutter and Node.js',
       style: TextStyle(
         color: Colors.white,
         fontSize: 14,
@@ -156,7 +155,6 @@ Widget _LoveSection() {
   );
 }
 
-// ignore: non_constant_identifier_names
 Widget _Endpage() {
   return Row(
     children: [
@@ -167,7 +165,7 @@ Widget _Endpage() {
         onTap: () {
           _launch("https://github.com/ashishexee");
         },
-        child: Container(
+        child: SizedBox(
           height: 23,
           width: 23,
           child: SvgPicture.asset(
@@ -179,9 +177,9 @@ Widget _Endpage() {
       SizedBox(width: 12),
       InkWell(
         onTap: () {
-          _launch("https://www.linkedin.com/in/ashish-singh-111212319/");
+          _launch("https://www.linkedin.com/in/ashishexee/");
         },
-        child: Container(
+        child: SizedBox(
           height: 23,
           width: 23,
           child: SvgPicture.asset(
@@ -196,7 +194,7 @@ Widget _Endpage() {
         onTap: () {
           _launch("https://x.com/ashishexeee");
         },
-        child: Container(
+        child: SizedBox(
           height: 23,
           width: 23,
           child: SvgPicture.asset('assets/icons/x.svg', color: Colors.white),
@@ -280,7 +278,7 @@ class _HeroSection extends StatelessWidget {
                   FilledButton.icon(
                     onPressed:
                         () => _launch(
-                          'https://drive.google.com/file/d/1ol2FZR4hISP7wVO9drXcCqtWyx7obWVh/view?usp=sharing ',
+                          'https://drive.google.com/file/d/1p74IbOv9LJ6WmZZpulgKAMsfNsSX3imX/view?usp=sharing',
                         ),
                     icon: Icon(Icons.description, color: Colors.white),
                     label: const Text(
@@ -324,7 +322,7 @@ class _HeroSection extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    url: 'https://www.linkedin.com/in/ashish-singh-111212319/',
+                    url: 'https://www.linkedin.com/in/ashishexee',
                     tooltip: 'Linkedin',
                   ),
                   const SizedBox(width: 10),
