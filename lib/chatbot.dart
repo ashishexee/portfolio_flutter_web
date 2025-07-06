@@ -40,7 +40,7 @@ class _ChatBotWindowState extends State<ChatBotWindow> {
       bottom: 20,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        width: 390,
+        width: 330,
         height: collapsed ? 72 : MediaQuery.of(context).size.height * 0.5,
         decoration: BoxDecoration(
           gradient: LinearGradient(

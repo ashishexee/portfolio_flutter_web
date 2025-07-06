@@ -86,7 +86,10 @@ class _HomeState extends State<_Home> with SingleTickerProviderStateMixin {
               ),
             ),
             SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width > 600 ? 60 : 24,
+                vertical: 20,
+              ),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
@@ -156,51 +159,71 @@ Widget _LoveSection() {
 }
 
 Widget _Endpage() {
-  return Row(
-    children: [
-      Text('@ 2025 ashishportfolio.live'),
-      Expanded(child: SizedBox()),
-
-      InkWell(
-        onTap: () {
-          _launch("https://github.com/ashishexee");
-        },
-        child: SizedBox(
-          height: 23,
-          width: 23,
-          child: SvgPicture.asset(
-            'assets/icons/github.svg',
-            color: Colors.white,
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      bool isMobile = constraints.maxWidth < 500;
+      final socialIcons = [
+        InkWell(
+          onTap: () {
+            _launch("https://github.com/ashishexee");
+          },
+          child: SizedBox(
+            height: 23,
+            width: 23,
+            child: SvgPicture.asset(
+              'assets/icons/github.svg',
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      SizedBox(width: 12),
-      InkWell(
-        onTap: () {
-          _launch("https://www.linkedin.com/in/ashishexee/");
-        },
-        child: SizedBox(
-          height: 23,
-          width: 23,
-          child: SvgPicture.asset(
-            'assets/icons/linkedin.svg',
-            color: Colors.white,
+        const SizedBox(width: 12),
+        InkWell(
+          onTap: () {
+            _launch("https://www.linkedin.com/in/ashishexee/");
+          },
+          child: SizedBox(
+            height: 23,
+            width: 23,
+            child: SvgPicture.asset(
+              'assets/icons/linkedin.svg',
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      SizedBox(width: 12),
-
-      InkWell(
-        onTap: () {
-          _launch("https://x.com/ashishexeee");
-        },
-        child: SizedBox(
-          height: 23,
-          width: 23,
-          child: SvgPicture.asset('assets/icons/x.svg', color: Colors.white),
+        const SizedBox(width: 12),
+        InkWell(
+          onTap: () {
+            _launch("https://x.com/ashishexeee");
+          },
+          child: SizedBox(
+            height: 23,
+            width: 23,
+            child: SvgPicture.asset('assets/icons/x.svg', color: Colors.white),
+          ),
         ),
-      ),
-    ],
+      ];
+
+      if (isMobile) {
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: socialIcons,
+            ),
+            const SizedBox(height: 16),
+            const Text('@ 2025 ashishportfolio.live'),
+          ],
+        );
+      } else {
+        return Row(
+          children: [
+            const Text('@ 2025 ashishportfolio.live'),
+            const Expanded(child: SizedBox()),
+            ...socialIcons,
+          ],
+        );
+      }
+    },
   );
 }
 
@@ -209,168 +232,197 @@ class _HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
+    // Use LayoutBuilder to switch between layouts based on screen width
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth > 550) {
+          // Use Row for wider screens
+          return _buildDesktopLayout(context);
+        } else {
+          // Use Column for narrower screens
+          return _buildMobileLayout(context);
+        }
+      },
+    );
+  }
 
+  // Widget for Desktop Layout (existing Row layout)
+  Widget _buildDesktopLayout(BuildContext context) {
+    final txt = Theme.of(context).textTheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Main content column
-        Expanded(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'hey ashish here 👋',
-                style: GoogleFonts.dmSerifDisplay(
-                  color: Colors.white,
-                  fontSize: 37.5,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.6),
-                      offset: Offset(2, 3),
-                      blurRadius: 8,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 14),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  'Developer  •  IIT Roorkee',
-                  style: txt.bodyLarge!.copyWith(
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Icon(Icons.code, color: Colors.blue[200], size: 22),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'Building full-stack apps with Flutter, Node.js, Express.js & MongoDB.',
-                      style: txt.bodyLarge!.copyWith(
-                        color: Colors.white.withOpacity(0.92),
-                        fontSize: 17,
-                        height: 1.4,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-              Wrap(
-                children: [
-                  FilledButton.icon(
-                    onPressed:
-                        () => _launch(
-                          'https://drive.google.com/file/d/1p74IbOv9LJ6WmZZpulgKAMsfNsSX3imX/view?usp=sharing',
-                        ),
-                    icon: Icon(Icons.description, color: Colors.white),
-                    label: const Text(
-                      'Resume',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Color(0xFF222733),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 28,
-                        vertical: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      elevation: 2,
-                    ),
-                  ),
-                  const SizedBox(width: 18),
-                  _SocialIcon(
-                    icon: SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: SvgPicture.asset(
-                        'assets/icons/github.svg',
-                        fit: BoxFit.fill,
-                        color: Colors.white,
-                      ),
-                    ),
-                    url: 'https://github.com/ashishexee',
-                    tooltip: 'Github',
-                  ),
-                  const SizedBox(width: 10),
-                  _SocialIcon(
-                    icon: SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: SvgPicture.asset(
-                        'assets/icons/linkedin.svg',
-                        fit: BoxFit.fill,
-                        color: Colors.white,
-                      ),
-                    ),
-                    url: 'https://www.linkedin.com/in/ashishexee',
-                    tooltip: 'Linkedin',
-                  ),
-                  const SizedBox(width: 10),
-                  _SocialIcon(
-                    icon: SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: SvgPicture.asset(
-                        'assets/icons/x.svg',
-                        fit: BoxFit.fill,
-                        color: Colors.white,
-                      ),
-                    ),
-                    url: 'https://x.com/ashishexeee',
-                    tooltip: 'X',
-                  ),
-                ],
+        Expanded(flex: 2, child: _buildTextContent(context, txt)),
+        const SizedBox(width: 40),
+        _buildImageContent(context),
+      ],
+    );
+  }
+
+  // Widget for Mobile Layout (new Column layout)
+  Widget _buildMobileLayout(BuildContext context) {
+    final txt = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildImageContent(context),
+        const SizedBox(height: 40),
+        _buildTextContent(context, txt),
+      ],
+    );
+  }
+
+  // Extracted Text Content for reuse
+  Widget _buildTextContent(BuildContext context, TextTheme txt) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'hey ashish here 👋',
+          style: GoogleFonts.dmSerifDisplay(
+            color: Colors.white,
+            fontSize: 37.5,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.2,
+            shadows: [
+              Shadow(
+                color: Colors.black.withOpacity(0.6),
+                offset: Offset(2, 3),
+                blurRadius: 8,
               ),
             ],
           ),
         ),
-        const SizedBox(width: 40),
-        // Side content column
-        Column(
+        const SizedBox(height: 14),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+          decoration: BoxDecoration(
+            color: Colors.white10,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+            'Developer  •  IIT Roorkee',
+            style: txt.bodyLarge!.copyWith(
+              color: Colors.white70,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 18),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(28),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.18),
-                    blurRadius: 18,
-                    offset: Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(28),
-                child: Image.asset(
-                  'assets/dash.png',
-                  fit: BoxFit.cover,
-                  height: 220,
-                  width: 220,
+            Icon(Icons.code, color: Colors.blue[200], size: 22),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Building full-stack apps with Flutter, Node.js, Express.js & MongoDB.',
+                style: txt.bodyLarge!.copyWith(
+                  color: Colors.white.withOpacity(0.92),
+                  fontSize: 17,
+                  height: 1.4,
                 ),
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 30),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            FilledButton.icon(
+              onPressed:
+                  () => _launch(
+                    'https://drive.google.com/file/d/1p74IbOv9LJ6WmZZpulgKAMsfNsSX3imX/view?usp=sharing',
+                  ),
+              icon: Icon(Icons.description, color: Colors.white),
+              label: const Text(
+                'Resume',
+                style: TextStyle(color: Colors.white),
+              ),
+              style: FilledButton.styleFrom(
+                backgroundColor: Color(0xFF222733),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28,
+                  vertical: 16,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                elevation: 2,
+              ),
+            ),
+            _SocialIcon(
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: SvgPicture.asset(
+                  'assets/icons/github.svg',
+                  fit: BoxFit.fill,
+                  color: Colors.white,
+                ),
+              ),
+              url: 'https://github.com/ashishexee',
+              tooltip: 'Github',
+            ),
+            _SocialIcon(
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: SvgPicture.asset(
+                  'assets/icons/linkedin.svg',
+                  fit: BoxFit.fill,
+                  color: Colors.white,
+                ),
+              ),
+              url: 'https://www.linkedin.com/in/ashishexee',
+              tooltip: 'Linkedin',
+            ),
+            _SocialIcon(
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: SvgPicture.asset(
+                  'assets/icons/x.svg',
+                  fit: BoxFit.fill,
+                  color: Colors.white,
+                ),
+              ),
+              url: 'https://x.com/ashishexeee',
+              tooltip: 'X',
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  // Extracted Image Content for reuse
+  Widget _buildImageContent(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 18),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.18),
+                blurRadius: 18,
+                offset: Offset(0, 8),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(28),
+            child: Image.asset(
+              'assets/dash.png',
+              fit: BoxFit.cover,
+              height: 220,
+              width: 220,
+            ),
+          ),
         ),
       ],
     );
@@ -418,10 +470,7 @@ class _ExperienceSectionState extends State<_ExperienceSection>
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
               ),
-              tabs: const [
-                SizedBox(width: 180, child: Center(child: Text('Work'))),
-                SizedBox(width: 180, child: Center(child: Text('Education'))),
-              ],
+              tabs: const [Tab(text: 'Work'), Tab(text: 'Education')],
             ),
           ),
         ),
@@ -596,7 +645,7 @@ class _ProjectsSection extends StatelessWidget {
           p: _Project(
             preview: 'assets/projects/joblook.png',
             name: 'JobLook',
-            desc: 'JobLook is a comprehensive mobile job search application.',
+            desc: 'A job search app connecting job seekers with employers, enabling users to search and bookmark jobs, while recruiters can post and manage listings.',
             tags: [
               "Flutter",
               "Node.js/Express.js",
@@ -611,7 +660,7 @@ class _ProjectsSection extends StatelessWidget {
           p: _Project(
             preview: 'assets/projects/blurconnect.png',
             name: 'BlurConnect',
-            desc: 'BlurConnect is a cross-platform social networking app',
+            desc: 'A cross-platform social networking app enabling users to share snaps with automatic face blurring, chat anonymously, filter content by gender and college, and prioritize privacy in social interactions.',
             tags: [
               "Flutter",
               "Node.js/Express.js",
@@ -628,7 +677,7 @@ class _ProjectsSection extends StatelessWidget {
             preview: 'assets/projects/teledrive.png',
             name: 'TeleDrive',
             desc:
-                'Application that transforms Telegram into your personal cloud storage system.',
+                'A full-stack app turning Telegram into personal cloud storage, with a frontend and backend enabling secure file storage via an intuitive interface.',
             tags: ["Flutter", "Node.js/Express.js", "Telegram Bot API"],
             link: "https://github.com/ashishexee/TeleDrive",
           ),
@@ -711,43 +760,46 @@ class _ProjectCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: 16 / 7,
-                  child: Image.asset(
-                    p.preview,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
-                ),
-                Positioned(
-                  right: 16,
-                  top: 16,
-                  child: FilledButton.tonal(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 8,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      elevation: 0,
-                    ),
-                    onPressed: () => _launch(p.link),
-                    child: Row(
-                      children: const [
-                        Icon(Icons.open_in_new, size: 16),
-                        SizedBox(width: 6),
-                        Text('Github'),
-                      ],
+            Container(
+              color: Colors.white,
+              child: Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 16 / 7,
+                    child: Image.asset(
+                      p.preview,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    right: 16,
+                    top: 16,
+                    child: FilledButton.tonal(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: Colors.black.withOpacity(0.5),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 8,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        elevation: 0,
+                      ),
+                      onPressed: () => _launch(p.link),
+                      child: Row(
+                        children: const [
+                          Icon(Icons.open_in_new, size: 16),
+                          SizedBox(width: 6),
+                          Text('Github'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
